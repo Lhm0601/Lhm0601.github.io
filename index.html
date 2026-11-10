@@ -7,6 +7,7 @@
 <title>梁活铭 · 企业级系统交付 / AI 工作流 / 自动化</title>
 <meta name="description" content="软件工程本科。做过企业级数据标注平台（约 24.6 万行代码、31 个后端模块、33 项安全整改），擅长把重复的活做成流水线、把模糊的需求做成可验收的标准。附三个在线小工具。">
 <meta name="theme-color" content="#f4f1ea">
+<script>(function(){try{var t=localStorage.getItem("lhm-theme");if(t==="light"||t==="dark"){document.documentElement.setAttribute("data-theme",t);}}catch(e){}})();</script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="梁活铭 · 企业级系统交付 / AI 工作流">
 <meta property="og:description" content="把重复的事做成流水线，把模糊的事做成验收标准。">
@@ -19,16 +20,27 @@
     --paper:#f4f1ea; --paper-2:#efeadd; --ink:#15181d; --ink-2:#3a4149; --muted:#5c636e;
     --rule:rgba(14,42,82,.16); --rule-2:rgba(14,42,82,.08); --navy:#0e2a52; --teal:#0c6b71;
     --stamp:#b23a2f; --card:rgba(255,255,255,.62);
+    --veil:rgba(244,241,234,.72); --navVeil:rgba(244,241,234,.80); --marqueeBg:rgba(239,234,221,.6);
+    --spotC:rgba(14,42,82,.09); --shade:rgba(21,24,29,.12);
     --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Courier New",monospace;
     --serif:"Songti SC","Noto Serif SC",Georgia,"Times New Roman",serif;
     --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
   }
   @media (prefers-color-scheme: dark){
-    :root{
+    :root:not([data-theme="light"]){
       --paper:#0b1016; --paper-2:#0f151d; --ink:#eceff4; --ink-2:#b9c2cd; --muted:#8a94a1;
       --rule:rgba(120,190,210,.20); --rule-2:rgba(120,190,210,.09); --navy:#9fc0ea; --teal:#5ad1d6;
       --stamp:#e2604f; --card:rgba(255,255,255,.035);
+      --veil:rgba(11,16,22,.72); --navVeil:rgba(11,16,22,.80); --marqueeBg:rgba(15,21,29,.6);
+      --spotC:rgba(90,209,214,.12); --shade:rgba(255,255,255,.10);
     }
+  }
+  :root[data-theme="dark"]{
+      --paper:#0b1016; --paper-2:#0f151d; --ink:#eceff4; --ink-2:#b9c2cd; --muted:#8a94a1;
+      --rule:rgba(120,190,210,.20); --rule-2:rgba(120,190,210,.09); --navy:#9fc0ea; --teal:#5ad1d6;
+      --stamp:#e2604f; --card:rgba(255,255,255,.035);
+      --veil:rgba(11,16,22,.72); --navVeil:rgba(11,16,22,.80); --marqueeBg:rgba(15,21,29,.6);
+      --spotC:rgba(90,209,214,.12); --shade:rgba(255,255,255,.10);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -49,8 +61,7 @@
   @media (max-width:820px){ .wrap{padding:0 16px} }
 
   .ruler{position:fixed; left:0; top:0; bottom:0; width:34px; border-right:1px solid var(--rule);
-    background:rgba(244,241,234,.72); z-index:5; pointer-events:none}
-  @media (prefers-color-scheme: dark){ .ruler{background:rgba(11,16,22,.72)} }
+    background:var(--veil); z-index:5; pointer-events:none}
   .ruler::after{content:""; position:absolute; inset:0;
     background:repeating-linear-gradient(to bottom, var(--rule) 0 1px, transparent 1px 12px);
     -webkit-mask-image:linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
@@ -61,8 +72,7 @@
   .prog{position:fixed; top:0; left:0; height:2px; background:var(--stamp); width:0; z-index:40}
 
   nav{position:sticky; top:0; z-index:30; backdrop-filter:blur(8px);
-    background:rgba(244,241,234,.80); border-bottom:1px solid var(--rule)}
-  @media (prefers-color-scheme: dark){ nav{background:rgba(11,16,22,.80)} }
+    background:var(--navVeil); border-bottom:1px solid var(--rule)}
   .navIn{max-width:1120px; margin:0 auto; padding:11px 22px 11px 46px; display:flex; align-items:center; gap:18px}
   @media (max-width:820px){ .navIn{padding:10px 16px} }
   .brand{display:flex; align-items:center; gap:9px; text-decoration:none; font-family:var(--mono); font-size:12px; letter-spacing:.04em; color:var(--muted)}
@@ -73,6 +83,11 @@
   .navLinks a{color:var(--muted); text-decoration:none; padding-bottom:2px; border-bottom:1px solid transparent}
   .navLinks a:hover{color:var(--ink); border-bottom-color:var(--stamp)}
   @media (max-width:620px){ .navLinks a:nth-child(n+4){display:none} }
+  .themeBtn{font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:var(--ink-2);
+    background:transparent; border:1px solid var(--rule); border-radius:1px; padding:5px 9px; cursor:pointer;
+    display:inline-flex; align-items:center; gap:5px; white-space:nowrap; transition:border-color .15s, color .15s}
+  .themeBtn:hover{border-color:var(--ink); color:var(--ink)}
+  .themeBtn:focus-visible{outline:2px solid var(--stamp); outline-offset:2px}
 
   .tag{font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--muted)}
   .figLabel{display:flex; align-items:center; gap:10px; margin:0 0 22px}
@@ -116,8 +131,7 @@
   .stampNote{text-align:center; font-family:var(--mono); font-size:10.5px; color:var(--muted); letter-spacing:.06em; padding-bottom:10px}
 
   .marquee{margin:34px 0 0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); overflow:hidden;
-    background:rgba(239,234,221,.6)}
-  @media (prefers-color-scheme: dark){ .marquee{background:rgba(15,21,29,.6)} }
+    background:var(--marqueeBg)}
   .track{display:flex; width:max-content; animation:slide 42s linear infinite}
   .marquee:hover .track{animation-play-state:paused}
   @keyframes slide{from{transform:translateX(0)} to{transform:translateX(-50%)}}
@@ -131,7 +145,7 @@
   @media (max-width:600px){ .bento{grid-template-columns:1fr} }
   .card{position:relative; border:1px solid var(--rule); background:var(--card); padding:20px;
     transition:border-color .18s, transform .18s, box-shadow .18s}
-  .card:hover{border-color:var(--ink); transform:translate(-2px,-2px); box-shadow:4px 4px 0 rgba(21,24,29,.12)}
+  .card:hover{border-color:var(--ink); transform:translate(-2px,-2px); box-shadow:4px 4px 0 var(--shade)}
   .card.w2{grid-column:span 2} .card.h2{grid-row:span 2}
   @media (max-width:940px){ .card.h2{grid-row:auto} }
   @media (max-width:600px){ .card.w2{grid-column:auto} }
@@ -175,7 +189,7 @@
   @media (max-width:820px){ .toolRow{grid-template-columns:1fr} }
   .tool{display:block; text-decoration:none; border:1px solid var(--rule); background:var(--card); padding:18px;
     transition:border-color .18s, transform .18s, box-shadow .18s}
-  .tool:hover{border-color:var(--ink); transform:translate(-2px,-2px); box-shadow:4px 4px 0 rgba(21,24,29,.12)}
+  .tool:hover{border-color:var(--ink); transform:translate(-2px,-2px); box-shadow:4px 4px 0 var(--shade)}
   .tool h4{margin:0 0 6px; font-size:15px; display:flex; align-items:center; gap:8px}
   .tool p{margin:0; font-size:12.5px; color:var(--muted)}
 
@@ -201,9 +215,8 @@
   a:focus-visible,.btn:focus-visible,.tool:focus-visible{outline:2px solid var(--stamp); outline-offset:3px}
 
   .spot{position:fixed; width:520px; height:520px; border-radius:50%; pointer-events:none; z-index:1;
-    background:radial-gradient(circle, rgba(14,42,82,.09), transparent 62%);
+    background:radial-gradient(circle, var(--spotC), transparent 62%);
     transform:translate(-50%,-50%); opacity:0; transition:opacity .4s}
-  @media (prefers-color-scheme: dark){ .spot{background:radial-gradient(circle, rgba(90,209,214,.12), transparent 62%)} }
   .spot.on{opacity:1}
   .content{position:relative; z-index:2}
 </style>
@@ -223,6 +236,7 @@
       <a href="#tools">04 工具</a>
       <a href="#contact">05 联系</a>
     </div>
+    <button class="themeBtn" id="themeBtn" type="button" aria-label="切换配色：跟随系统 / 浅色 / 深色" title="切换配色（跟随系统 → 浅色 → 深色）"><span id="themeLabel">◐ 跟随系统</span></button>
   </div>
 </nav>
 
@@ -411,6 +425,43 @@
     }, { rootMargin:'0px 0px -8% 0px', threshold:0.05 });
     Array.prototype.forEach.call(rv, function(el){ io.observe(el); });
   }
+
+  /* 配色切换：跟随系统 → 浅色 → 深色 */
+  var root = document.documentElement;
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+  var label = document.getElementById('themeLabel');
+  var btn = document.getElementById('themeBtn');
+  var mode = 'auto', steps = 0;
+  try { var saved = localStorage.getItem('lhm-theme'); if(saved === 'light' || saved === 'dark'){ mode = saved; steps = 2; } } catch(e){}
+  var ICON = { auto:'◐', light:'☀', dark:'☾' }, NAME = { auto:'跟随系统', light:'浅色', dark:'深色' };
+  function paint(){
+    if(mode === 'auto'){ root.removeAttribute('data-theme'); }
+    else { root.setAttribute('data-theme', mode); }
+    if(label){ label.textContent = ICON[mode] + ' ' + NAME[mode]; }
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if(meta){
+      var dark = (mode === 'dark') || (mode === 'auto' && mq.matches);
+      meta.setAttribute('content', dark ? '#0b1016' : '#f4f1ea');
+    }
+  }
+  function save(){
+    try{
+      if(mode === 'auto') localStorage.removeItem('lhm-theme');
+      else localStorage.setItem('lhm-theme', mode);
+    }catch(e){}
+  }
+  if(btn){
+    btn.addEventListener('click', function(){
+      if(mode === 'auto'){ mode = mq.matches ? 'light' : 'dark'; steps = 1; }
+      else if(steps <= 1){ mode = (mode === 'light') ? 'dark' : 'light'; steps = 2; }
+      else { mode = 'auto'; steps = 0; }
+      paint(); save();
+    });
+  }
+  function onSchemeChange(){ if(mode === 'auto') paint(); }
+  if(mq.addEventListener) mq.addEventListener('change', onSchemeChange);
+  else if(mq.addListener) mq.addListener(onSchemeChange);
+  paint();
 
   var prog = document.getElementById('prog'), ticking = false;
   function onScroll(){
