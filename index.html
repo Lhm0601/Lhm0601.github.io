@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical" href="https://lhm0601.github.io/">
+<title>Lhm0601 · 自己写的小工具</title>
+<meta name="description" content="几个自己写的小工具：海报/封面交付自检、图片色号提取与对比度检查。全部单文件、无需安装、图片不上传，浏览器本地运行。">
+<meta name="theme-color" content="#0e2a52">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lhm0601 · 自己写的小工具">
+<meta property="og:description" content="海报交付自检、色号提取。单文件、无后端、图片不上传。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e2a52'/%3E%3Ccircle cx='24' cy='26' r='8' fill='%2335b8be'/%3E%3Ccircle cx='41' cy='40' r='8' fill='%23f4f1ea'/%3E%3C/svg%3E">
+<style>
+  :root{ --ink:#12161c; --muted:#5b6673; --line:#e3e7ec; --bg:#f6f7f9; --brand:#0e2a52; --brand2:#35b8be; }
+  *{box-sizing:border-box}
+  body{margin:0; font:16px/1.65 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+    color:var(--ink); background:var(--bg); -webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px; margin:0 auto; padding:56px 22px 60px}
+  h1{font-size:30px; margin:0 0 8px; letter-spacing:-.01em}
+  .sub{color:var(--muted); margin:0 0 34px}
+  .card{display:block; text-decoration:none; color:inherit; background:#fff; border:1px solid var(--line);
+    border-radius:16px; padding:20px 22px; margin-bottom:14px; transition:.18s}
+  .card:hover{border-color:var(--brand2); transform:translateY(-1px); box-shadow:0 6px 18px rgba(18,22,28,.06)}
+  .card h2{font-size:18px; margin:0 0 6px; display:flex; align-items:center; gap:8px}
+  .card p{margin:0; color:var(--muted); font-size:14px}
+  .tag{font-size:12px; font-weight:400; color:#0f8a4d; background:#e8f6ee; border:1px solid #c9e9d7;
+    padding:2px 8px; border-radius:999px; margin-left:auto}
+  .note{margin-top:30px; font-size:13px; color:var(--muted); line-height:1.8}
+  footer{margin-top:34px; font-size:12px; color:var(--muted)}
+  a{color:var(--brand)}
+  @media (prefers-color-scheme: dark){
+    body{background:#12161c; color:#e8ecf1}
+    .card{background:#1a1f27; border-color:#2a3140}
+    .card p{color:#9aa5b4}
+    .note,footer,.sub{color:#9aa5b4}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Lhm0601</h1>
+  <p class="sub">自己写的小工具。都是单文件、不用安装、不用登录 —— 图片只在你的浏览器里处理，不上传。</p>
+
+  <a class="card" href="./haibao-check/">
+    <h2>海报 / 封面 交付自检 <span class="tag">已上线</span></h2>
+    <p>上传一张海报，5 秒出结论：平台比例对不对、发出去会被裁掉哪块、字够不够清楚、文件超没超限，可导出交付报告。支持批量检查。</p>
+  </a>
+
+  <a class="card" href="./color-picker/">
+    <h2>图片色号提取 &amp; 对比度检查 <span class="tag">已上线</span></h2>
+    <p>拖图即取色（HEX / RGB / HSL），自动抓主色并标出占比，一键检查文字与背景的对比度是否达到 WCAG AA / AAA。</p>
+  </a>
+
+  <p class="note">
+    为什么做这些：日常工作里反复遇到「这张图能不能发」「这个颜色到底是多少」这类问题，
+    通用工具要么要登录、要么上传到别人服务器、要么给一堆数据不给结论 —— 就自己写了。
+  </p>
+
+  <footer>© 2026 Lhm0601 · 代码托管在 GitHub Pages</footer>
+</div>
+</body>
+</html>
