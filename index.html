@@ -47,7 +47,7 @@
   @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} *{animation:none!important;transition:none!important} }
   body{
     margin:0; color:var(--ink); background:var(--paper);
-    font:16px/1.72 var(--sans); -webkit-font-smoothing:antialiased;
+    font:16px/1.72 var(--sans); -webkit-font-smoothing:antialiased; overflow-wrap:break-word;
     background-image:
       linear-gradient(var(--rule-2) 1px, transparent 1px),
       linear-gradient(90deg, var(--rule-2) 1px, transparent 1px),
@@ -218,6 +218,85 @@
     background:radial-gradient(circle, var(--spotC), transparent 62%);
     transform:translate(-50%,-50%); opacity:0; transition:opacity .4s}
   .spot.on{opacity:1}
+
+  /* ===== 移动端适配（≤620px）===== */
+  @media (max-width:620px){
+    body{font-size:15.5px}
+    .wrap{padding:0 15px}
+    section{padding:46px 0 4px}
+    header{padding:34px 0 20px}
+
+    .navIn{flex-wrap:wrap; gap:8px 10px; padding:9px 15px}
+    .brand{font-size:11px}
+    .brand b{font-size:14px}
+    .themeBtn{margin-left:auto; font-size:10.5px; padding:4px 8px; letter-spacing:0}
+    .navLinks{order:3; width:100%; margin-left:0; gap:14px; overflow-x:auto;
+      padding-bottom:4px; scrollbar-width:none; -webkit-overflow-scrolling:touch}
+    .navLinks::-webkit-scrollbar{display:none}
+    .navLinks a{white-space:nowrap; font-size:11.5px}
+    .navLinks a:nth-child(n+4){display:inline}   /* 允许横向滚动，不再隐藏 */
+
+    .kicker{font-size:10.5px; letter-spacing:.06em; flex-wrap:wrap; margin-bottom:14px}
+    h1{font-size:clamp(25px,7.4vw,33px); line-height:1.3; letter-spacing:-.005em}
+    h1 br{display:none}                          /* 手机上不强行断行，按宽度自然排 */
+    h1 .out{-webkit-text-stroke-width:1px}
+    .lead{margin-top:16px; font-size:14.5px; line-height:1.8}
+    .cta{margin-top:20px; gap:8px}
+    .btn{font-size:13px; padding:9px 14px; flex:1 1 auto; justify-content:center}
+
+    .hero{gap:20px}
+    .titleblock .row{grid-template-columns:62px 1fr}
+    .titleblock .k{font-size:9.5px; padding:8px 8px; letter-spacing:.06em}
+    .titleblock .v{font-size:12.5px; padding:8px 10px}
+    .stamp{font-size:10px; letter-spacing:.12em; padding:6px 11px; margin:12px auto 4px}
+    .stampNote{font-size:9.5px; letter-spacing:0}
+
+    .marquee{margin-top:24px}
+    .track span{font-size:10px; letter-spacing:.08em}
+
+    .figLabel{gap:8px; margin-bottom:15px; flex-wrap:wrap}
+    .figLabel h2{font-size:17px}
+    .figLabel .dim{display:none}
+
+    .card{padding:16px}
+    .card h3{font-size:15.5px; gap:6px; line-height:1.5}
+    .card p,.card ul{font-size:13px}
+    .badge{font-size:9.5px; padding:2px 5px}
+    .kv{font-size:11px; gap:0}
+    .kv div{display:block; padding:4px 0}
+    .kv b{display:block; text-align:left; margin-top:1px}
+    .card .go{font-size:11px}
+
+    .specRow{padding:11px 12px; gap:9px}
+    .specRow .name{font-size:13px}
+    .specRow .lv{font-size:10px; line-height:1.5}
+    .spec{margin-top:2px}
+
+    .flow .stop{padding:12px 0 12px 20px}
+    .stop h4{font-size:14.5px}
+    .stop p{font-size:12.5px}
+
+    .tool{padding:16px}
+    .tool h4{font-size:14.5px}
+    .tool p{font-size:12.5px}
+
+    .sign{margin-top:40px}
+    .signTop{padding:20px 16px 16px}
+    .signTop p{font-size:13.5px}
+    .signGrid{grid-template-columns:1fr 1fr}
+    .signCell{padding:12px 14px}
+    .signCell .k{font-size:9.5px}
+    .signCell .v{font-size:12.5px; overflow-wrap:anywhere}
+
+    footer{font-size:10px; gap:6px; padding:26px 0 44px}
+  }
+  @media (max-width:380px){
+    h1{font-size:23px}
+    .btn{flex-basis:100%}
+    .signGrid{grid-template-columns:1fr}
+    .signCell{border-left:0; border-top:1px solid var(--rule)}
+    .signCell:first-child{border-top:0}
+  }
   .content{position:relative; z-index:2}
 </style>
 </head>
